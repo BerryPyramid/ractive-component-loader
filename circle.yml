@@ -45,5 +45,6 @@ deployment:
       - git tag v$PACKAGE_VERSION -a -m "circle ci release v$PACKAGE_VERSION":
           environment:
             PACKAGE_VERSION: "$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')"
+      - git push --set-upstream origin master
       - git push --follow-tags
       - npm publish
